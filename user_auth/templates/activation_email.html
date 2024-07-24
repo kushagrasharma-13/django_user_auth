@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Activate Your Account</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'user_auth/style.css' %}">
+</head>
+<body>
+    <p>Hi {{ user.username }},</p>
+    <p>Thank you for signing up. Please click the link below to activate your account:</p>
+    <p><a href="{{ activation_link }}">Activate Account</a></p>
+</body>
+</html>
