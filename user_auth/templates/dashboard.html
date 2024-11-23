@@ -1,23 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Dashboard</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'user_auth/style.css' %}">
-</head>
-<body>
-    <div class="container">
-        <h2>Hi {{ user.username }}!</h2>
-        <ul>
-            <li><a href="{% url 'profile' %}">Profile</a></li>
-            <li><a href="{% url 'change_password' %}">Change Password</a></li>
-            <li>
-                <form method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button type="submit">Logout</button>
-                </form>
-            </li>
-        </ul>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Hi {{ user.username }}!</h2>
+    <div class="profile">
+        <p><a href="{% url 'user_auth:profile' %}">Profile</a>
+        <p><a href="{% url 'user_auth:change_password' %}">Change Password</a></p>
+        <form method="post" action="{% url 'user_auth:logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}

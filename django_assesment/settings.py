@@ -10,7 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -55,7 +59,7 @@ ROOT_URLCONF = 'django_assesment.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'user_auth/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,15 +127,21 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = 'user_auth.User'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.your-email-provider.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'your-email@example.com'
-EMAIL_HOST_PASSWORD = 'your-email-password'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Use the SMTP backend for sending emails
+EMAIL_HOST = 'mail.smtp2go.com'  # SMTP2Go's SMTP server
+EMAIL_PORT = 2525  # SMTP2Go supports port 2525 for TLS
+EMAIL_USE_TLS = True  # Enable TLS
+EMAIL_USE_SSL = False  # Ensure SSL is not used since TLS is enabled
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')  # Your SMTP2Go username (usually your email)
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')  # Your SMTP2Go password
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')  # Email address used as 'from' in emails
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "user_auth/static",
 ]
+
+TIME_ZONE = 'Asia/Kolkata'
+USE_TZ = True  # Keep this set to True to use time zone support

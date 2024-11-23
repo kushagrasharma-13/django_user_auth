@@ -1,130 +1,95 @@
-+++
-# Django User Authentication
+# Django Assessment Project
 
-This repository provides a comprehensive implementation of user authentication in a Django application. The project includes features such as user registration, login, logout, password reset, and email verification.
-
-## Table of Contents
-
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Installation
-
-1. **Clone the repository**
-    ```sh
-    git clone https://github.com/kushagrasharma-13/django_user_auth.git
-    cd django_user_auth
-    ```
-
-2. **Create and activate a virtual environment**
-    ```sh
-    python -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-    ```
-
-3. **Install dependencies**
-    ```sh
-    pip install -r requirements.txt
-    ```
-
-4. **Apply migrations**
-    ```sh
-    python manage.py migrate
-    ```
-
-5. **Create a superuser**
-    ```sh
-    python manage.py createsuperuser
-    ```
-
-6. **Run the development server**
-    ```sh
-    python manage.py runserver
-    ```
-
-## Configuration
-
-### Email Settings
-To enable email functionality (for password reset and email verification), configure the email settings in `settings.py`:
-
-```python
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.example.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'your-email@example.com'
-EMAIL_HOST_PASSWORD = 'your-email-password'
-```
-
-### Custom User Model
-The project uses a custom user model. Ensure `AUTH_USER_MODEL` is set in `settings.py`:
-
-```python
-AUTH_USER_MODEL = 'your_app.CustomUser'
-```
-
-## Usage
-
-### User Registration
-Users can register by providing their username, email, and password. Upon registration, an email verification link is sent.
-
-### User Login
-Registered users can log in using their username and password.
-
-### Password Reset
-Users can reset their password by requesting a password reset link via email.
-
-### Email Verification
-New users must verify their email address by clicking on the link sent to their email.
+This repository contains a Django-based web application designed with modularity and extensibility in mind. The project includes user authentication, a responsive interface, and database-backed functionality.
 
 ## Features
-
-- User Registration
-- User Login
-- User Logout
-- Password Reset
-- Email Verification
-- Custom User Model
+- **User Authentication**:
+  - Sign Up, Log In, Log Out
+  - Password Reset and Change
+  - Profile Management
+- **Dashboard**: A personalized user dashboard after login.
+- **Admin Panel**: Django admin integration for managing users and other resources.
+- **Responsive Design**: Custom styles for an intuitive user experience.
 
 ## Project Structure
+### Root Directory
+- **`manage.py`**: Command-line utility for interacting with the Django project.
 
+### `django_assesment` Directory
+- **`settings.py`**: Configures project settings, such as:
+  - Installed apps: Includes `user_auth` and default Django apps.
+  - Middleware for session, authentication, and CSRF protection.
+  - Templates and static files configurations.
+- **`urls.py`**: Root URL configurations; routes traffic to `user_auth` app.
+- **`wsgi.py`** and **`asgi.py`**: Deployment configurations for WSGI and ASGI servers.
+
+### `user_auth` Directory
+- **`models.py`**: Defines a `User` model or extends Django’s default `User` model for authentication.
+- **`forms.py`**: Contains forms for user signup, login, and password management.
+- **`views.py`**: Handles:
+  - User registration, login, logout, and profile management.
+  - Password reset and change flows.
+  - Dashboard rendering.
+- **`urls.py`**: Maps URLs to view functions.
+- **`admin.py`**: Configures admin panel for managing user data.
+
+### Templates
+Located in `user_auth/templates/`:
+- **Base Template**: `base.html`
+- **Authentication Pages**: `login.html`, `signup.html`, `change_password.html`
+- **Dashboard**: `dashboard.html`
+
+### Static Files
+Located in `user_auth/static/`:
+- **Styles**: `style.css`
+
+## Installation
+1. **Clone the repository**:
+   ```bash
+   git clone <repository-url>
+   cd django_assesment
+   ```
+
+2. **Set up a virtual environment**:
+   ```bash
+   python -m venv env
+   source env/bin/activate  # On Windows: .\env\Scripts\activate
+   ```
+
+3. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Configure environment variables**:
+   - Create a `.env` file in the root directory with required variables:
+     ```
+     SECRET_KEY=your_secret_key
+     DEBUG=True
+     DATABASE_URL=your_database_url
+     ```
+
+5. **Run migrations**:
+   ```bash
+   python manage.py migrate
+   ```
+
+6. **Run the server**:
+   ```bash
+   python manage.py runserver
+   ```
+
+## Usage
+- Visit `http://127.0.0.1:8000/` to access the application.
+- Use the admin interface at `/admin` to manage resources.
+
+## Tests
+Run unit tests with:
+```bash
+python manage.py test
 ```
-django_user_auth/
-├── your_app/
-│   ├── migrations/
-│   ├── templates/
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── urls.py
-│   ├── views.py
-│   └── ...
-├── django_user_auth/
-│   ├── settings.py
-│   ├── urls.py
-│   ├── wsgi.py
-│   └── ...
-├── manage.py
-└── requirements.txt
-```
 
-## Contributing
-
-Contributions are welcome! Please fork this repository and submit a pull request with your improvements.
-
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature-branch`)
-3. Commit your changes (`git commit -m 'Add new feature'`)
-4. Push to the branch (`git push origin feature-branch`)
-5. Open a pull request
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
-+++
+## Future Enhancements
+- Extend the dashboard with analytics or user-specific data.
+- Add social login functionality.
+- Implement RESTful APIs for integration with external services.
