@@ -2,6 +2,9 @@
 
 This repository contains a Django-based web application designed with modularity and extensibility in mind. The project includes user authentication, a responsive interface, and database-backed functionality.
 
+### Watch the Demo Video
+
+[![Watch the video](https://img.youtube.com/vi/QJtgCAhcvJU/0.jpg)](https://www.youtube.com/watch?v=QJtgCAhcvJU)
 ## Features
 - **User Authentication**:
   - Sign Up, Log In, Log Out
