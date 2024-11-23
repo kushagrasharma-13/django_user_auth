@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -142,6 +142,3 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "user_auth/static",
 ]
-
-TIME_ZONE = 'Asia/Kolkata'
-USE_TZ = True  # Keep this set to True to use time zone support

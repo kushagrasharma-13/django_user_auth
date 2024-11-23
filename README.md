@@ -46,7 +46,7 @@ Located in `user_auth/static/`:
 ## Installation
 1. **Clone the repository**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/kushagrasharma-13/django_user_auth
    cd django_assesment
    ```
 
@@ -64,10 +64,11 @@ Located in `user_auth/static/`:
 4. **Configure environment variables**:
    - Create a `.env` file in the root directory with required variables:
      ```
-     SECRET_KEY=your_secret_key
-     DEBUG=True
-     DATABASE_URL=your_database_url
+     EMAIL_HOST_PASSWORD = your host password
+     EMAIL_HOST_USER = user email
+     DEFAULT_FROM_EMAIL = default email
      ```
+    - You can create them at https://app-us.smtp2go.com/dashboard/main/
 
 5. **Run migrations**:
    ```bash
